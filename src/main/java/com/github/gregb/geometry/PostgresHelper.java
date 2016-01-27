@@ -1,11 +1,11 @@
 package com.github.gregb.geometry;
 
-import gnu.trove.list.array.TDoubleArrayList;
-
 import java.util.Map;
 import java.util.function.Function;
 
 import com.google.common.collect.Maps;
+
+import gnu.trove.list.array.TDoubleArrayList;
 
 public final class PostgresHelper {
 
@@ -77,7 +77,7 @@ public final class PostgresHelper {
 	}
 
 	// Checks that the number of floats returned by the sql driver matches expectations.
-	public static void expectDoubles(double[] ds, int expected) {
+	public static void expectDoubles(final double[] ds, final int expected) {
 
 		// if positive, expect exactly that number
 		if (expected > 0) {
@@ -95,11 +95,8 @@ public final class PostgresHelper {
 
 	}
 
-	// ExtractFloats extracts all floats from a string
-	// Parameter represents an ASCII string
-	// Returns a slice of all floats parsed out
-	// Returns an error if a float could not be parsed, plus all successfully parsed floats up until that point
-	public static double[] parseDoubles(String s) {
+	// Parses all floats from a string
+	public static double[] parseDoubles(final String s) {
 
 		final TDoubleArrayList ds = new TDoubleArrayList();
 
@@ -128,7 +125,7 @@ public final class PostgresHelper {
 		}
 
 		if (inFloat) {
-			final String substr = s.substring(start, s.length() - 1);
+			final String substr = s.substring(start, s.length());
 			final double d = Double.parseDouble(substr);
 			ds.add(d);
 		}

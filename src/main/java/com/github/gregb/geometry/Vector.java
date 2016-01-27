@@ -92,6 +92,11 @@ public class Vector extends XY {
 		return new Segment(Point.ORIGIN, new Point(this));
 	}
 
+	public Vector ofMagnitude(final double newMagnitude) {
+		final double m = this.magnitude();
+		return new Vector(this.x * newMagnitude / m, this.y * newMagnitude / m);
+	}
+
 	public static final Function<Vector, String> FORMATTER_COMMON = p -> {
 		return String.format("<%.15f,%.15f>", p.x, p.y);
 	};

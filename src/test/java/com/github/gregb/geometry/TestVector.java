@@ -1,14 +1,10 @@
 package com.github.gregb.geometry;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.number.IsCloseTo.closeTo;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.number.IsCloseTo.*;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
-
-import com.github.gregb.geometry.Point;
-import com.github.gregb.geometry.Segment;
-import com.github.gregb.geometry.Vector;
 
 public class TestVector {
 
@@ -46,7 +42,19 @@ public class TestVector {
 		final Vector v1Unit = v1.unit();
 		assertThat(v1Unit.magnitude(), equalTo(1.0));
 		assertThat(v1Unit.angle(), closeTo(v1.angle(), ACCEPTABLE_DOUBLE_ERROR));
+	}
 
+	@Test
+	public void ofMagnitude() throws Exception {
+
+		final Vector v = new Vector(3, 4);
+		assertEquals(5, v.magnitude(), ACCEPTABLE_DOUBLE_ERROR);
+
+		final Vector v10 = v.ofMagnitude(10);
+		assertEquals(10, v10.magnitude(), ACCEPTABLE_DOUBLE_ERROR);
+		assertEquals(v.angle(), v10.angle(), ACCEPTABLE_DOUBLE_ERROR);
+		assertEquals(6, v10.x, ACCEPTABLE_DOUBLE_ERROR);
+		assertEquals(8, v10.y, ACCEPTABLE_DOUBLE_ERROR);
 	}
 
 	@Test
